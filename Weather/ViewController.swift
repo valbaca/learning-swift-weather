@@ -9,10 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet var userCity: UITextField!
     @IBOutlet var getWeatherButton: UIButton!
-
+    
     @IBOutlet var outputText: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,32 +26,46 @@ class ViewController: UIViewController {
                 (data, response, error) -> Void in
                 
                 var urlError = false
+                var weatherPhrase = ""
                 
                 if error == nil {
-                    var urlContent = NSString(data: data, encoding: NSUTF8StringEncoding)
-                    println(urlContent)
+                    // Extract phrase from data and put in weatherPhrase
+                    var urlContent = NSString(data: data, encoding: NSUTF8StringEncoding) as NSString!
+                    var urlContentSplitByPhrase = urlContent.componentsSeparatedByString("<span class=\"phrase\">")
+                    if urlContentSplitByPhrase.count > 0 {
+                        var urlContentSplitByCloseSpan = urlContentSplitByPhrase[1].componentsSeparatedByString("</span>")
+                        weatherPhrase = urlContentSplitByCloseSpan[0] as NSString
+                        weatherPhrase = weatherPhrase.stringByReplacingOccurrencesOfString("&deg;", withString: "º")
+                    } else {
+                        urlError = true // error parsing html
+                    }
                 } else {
-                    urlError = true
+                    urlError = true // error returned from task
                 }
                 
-                if urlError {
-                    self.showError()
+                dispatch_async(dispatch_get_main_queue()) {
+                    if !urlError {
+                        self.outputText.text = weatherPhrase
+                    } else {
+                        self.showError()
+                    }
                 }
+                
             })
             task.resume()
         } else {
             showError()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     func showError() {
         outputText.text = "Was not able to find weather for \(userCity.text). Please try again"
     }
-
+    
     @IBAction func getWeatherButtonPressed(sender: AnyObject) {
     }
 }
