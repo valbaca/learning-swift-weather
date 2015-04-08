@@ -17,8 +17,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // for first try, just pulling info for london and extracting the weather information (not interacting with the input text or button).
-        var url = NSURL(string: "http://www.weather-forecast.com/locations/London/forecasts/latest")
+
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func findWeather() {
+        var sanitizedUserText = sanitizeCityInput(userCity.text)
+        var url = NSURL(string: "http://www.weather-forecast.com/locations/" +  sanitizedUserText + "/forecasts/latest")
         
         // check that url exists, before forcing it with `!`
         if url != nil {
@@ -32,7 +40,7 @@ class ViewController: UIViewController {
                     // Extract phrase from data and put in weatherPhrase
                     var urlContent = NSString(data: data, encoding: NSUTF8StringEncoding) as NSString!
                     var urlContentSplitByPhrase = urlContent.componentsSeparatedByString("<span class=\"phrase\">")
-                    if urlContentSplitByPhrase.count > 0 {
+                    if urlContentSplitByPhrase.count > 1 {
                         var urlContentSplitByCloseSpan = urlContentSplitByPhrase[1].componentsSeparatedByString("</span>")
                         weatherPhrase = urlContentSplitByCloseSpan[0] as NSString
                         weatherPhrase = weatherPhrase.stringByReplacingOccurrencesOfString("&deg;", withString: "º")
@@ -58,8 +66,8 @@ class ViewController: UIViewController {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func sanitizeCityInput (userText: NSString) -> NSString {
+        return userText.stringByReplacingOccurrencesOfString(" ", withString: "-")
     }
     
     func showError() {
@@ -67,6 +75,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func getWeatherButtonPressed(sender: AnyObject) {
+        findWeather()
     }
 }
 
