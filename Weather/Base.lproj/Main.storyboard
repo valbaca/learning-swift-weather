@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -41,19 +42,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGh-CO-Beb">
-                                <rect key="frame" x="144" y="246" width="86" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Fcg-Hy-SNt"/>
-                                    <constraint firstAttribute="width" constant="86" id="JkM-dr-Qjj"/>
-                                </constraints>
-                                <state key="normal" title="Get Weather">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="getWeatherButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7J1-fD-By7"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EyG-sp-r7J">
                                 <rect key="frame" x="16" y="291" width="343" height="269"/>
                                 <constraints>
@@ -64,6 +52,19 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGh-CO-Beb">
+                                <rect key="frame" x="132" y="246" width="110" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Fcg-Hy-SNt"/>
+                                    <constraint firstAttribute="width" constant="95" id="JkM-dr-Qjj"/>
+                                </constraints>
+                                <state key="normal" title="Get Weather">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="getWeatherButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7J1-fD-By7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -72,6 +73,7 @@
                             <constraint firstItem="EyG-sp-r7J" firstAttribute="top" secondItem="eGh-CO-Beb" secondAttribute="bottom" constant="15" id="6wA-w9-Lcn"/>
                             <constraint firstAttribute="centerX" secondItem="afL-F2-AyM" secondAttribute="centerX" id="Dim-ST-IMW"/>
                             <constraint firstAttribute="centerX" secondItem="eGh-CO-Beb" secondAttribute="centerX" id="MNo-Rq-zwf"/>
+                            <constraint firstItem="eGh-CO-Beb" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Qms-X7-1km"/>
                             <constraint firstAttribute="centerX" secondItem="dz7-Bv-pa4" secondAttribute="centerX" id="QrN-1R-j9E"/>
                             <constraint firstItem="eGh-CO-Beb" firstAttribute="top" secondItem="RQx-Wa-NIu" secondAttribute="bottom" constant="14" id="bg8-jU-Gv6"/>
                             <constraint firstItem="afL-F2-AyM" firstAttribute="top" secondItem="dz7-Bv-pa4" secondAttribute="bottom" constant="37" id="mxc-Eq-PdU"/>

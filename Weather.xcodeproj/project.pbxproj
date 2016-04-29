@@ -159,6 +159,8 @@
 		BDC640231AD1E46800F761AF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0730;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Val Baca";
 				TargetAttributes = {
@@ -409,6 +411,7 @@
 				BDC6404F1AD1E46900F761AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BDC640501AD1E46900F761AF /* Build configuration list for PBXNativeTarget "WeatherTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +420,7 @@
 				BDC640521AD1E46900F761AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

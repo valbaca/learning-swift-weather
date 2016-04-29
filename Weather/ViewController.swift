@@ -25,8 +25,9 @@ class ViewController: UIViewController {
     }
     
     func findWeather() {
-        var sanitizedUserText = sanitizeCityInput(userCity.text)
-        var url = NSURL(string: "http://www.weather-forecast.com/locations/" +  sanitizedUserText + "/forecasts/latest")
+        let sanitizedUserText = sanitizeCityInput(userCity.text!)
+        print(sanitizedUserText as String!)
+        let url = NSURL(string: "http://www.weather-forecast.com/locations/" +  sanitizedUserText + "/forecasts/latest")
         
         // check that url exists, before forcing it with `!`
         if url != nil {
@@ -38,11 +39,11 @@ class ViewController: UIViewController {
                 
                 if error == nil {
                     // Extract phrase from data and put in weatherPhrase
-                    var urlContent = NSString(data: data, encoding: NSUTF8StringEncoding) as NSString!
-                    var urlContentSplitByPhrase = urlContent.componentsSeparatedByString("<span class=\"phrase\">")
+                    let urlContent = NSString(data: data!, encoding: NSUTF8StringEncoding) as NSString!
+                    let urlContentSplitByPhrase = urlContent.componentsSeparatedByString("<span class=\"phrase\">")
                     if urlContentSplitByPhrase.count > 1 {
                         var urlContentSplitByCloseSpan = urlContentSplitByPhrase[1].componentsSeparatedByString("</span>")
-                        weatherPhrase = urlContentSplitByCloseSpan[0] as NSString
+                        weatherPhrase = urlContentSplitByCloseSpan[0] as String!
                         weatherPhrase = weatherPhrase.stringByReplacingOccurrencesOfString("&deg;", withString: "º")
                     } else {
                         urlError = true // error parsing html
@@ -66,12 +67,12 @@ class ViewController: UIViewController {
         }
     }
     
-    func sanitizeCityInput (userText: NSString) -> NSString {
+    func sanitizeCityInput (userText: String) -> String {
         return userText.stringByReplacingOccurrencesOfString(" ", withString: "-")
     }
     
     func showError() {
-        outputText.text = "Was not able to find weather for \(userCity.text). Please try again"
+        outputText.text = "Was not able to find weather for \(userCity.text!). Please try again"
     }
     
     @IBAction func getWeatherButtonPressed(sender: AnyObject) {
